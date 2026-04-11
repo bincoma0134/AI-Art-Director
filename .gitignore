@@ -1,0 +1,21 @@
+# Bỏ qua môi trường ảo (Streamlit Cloud sẽ tự tạo lại dựa vào requirements.txt)
+venv/
+env/
+__pycache__/
+
+# Bỏ qua dữ liệu huấn luyện (Rất nặng và không cần cho Web App)
+data/
+
+# BẢO MẬT: Tuyệt đối không push file chứa API Key
+.env
+
+# Bỏ qua các file log và biểu đồ xuất ra trong quá trình train
+logs/
+Log.txt
+*.log
+*.npz
+
+# Quản lý Checkpoints: 
+# Chỉ tải lên các file _best.pth, bỏ qua tất cả các file epoch cũ (rất nặng)
+*.pth
+!*best.pth
