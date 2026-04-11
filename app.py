@@ -265,20 +265,19 @@ components.html("""
 """, height=0, width=0)
 
 @st.cache_resource
-# ... (Giữ nguyên phần code load_model phía dưới) ...
 def load_model(arch_name):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
-    # 🌟 Cập nhật đường dẫn tới các file Checkpoint an toàn đã chống Overfitting
+    # 🌟 Đã sửa lại chữ T và V viết hoa cho khớp chính xác với thư mục trên GitHub
     if arch_name == "EfficientNet-B3 (Recommended)":
         model = AI_ArtDirector_EfficientNet(num_attributes=12)
-        model_path = os.path.join(BASE_DIR, "checkpoints","efficientnet_b3","training_v2","efficientnet_b3_best.pth")
+        model_path = os.path.join(BASE_DIR, "checkpoints", "efficientnet_b3", "Training_V2", "efficientnet_b3_best.pth")
     elif arch_name == "ResNet-50":
         model = AI_ArtDirector_ResNet50(num_attributes=12)
-        model_path = os.path.join(BASE_DIR, "checkpoints","resnet50","training_v2","resnet50_best.pth")
+        model_path = os.path.join(BASE_DIR, "checkpoints", "resnet50", "Training_V2", "resnet50_best.pth")
     else: 
         model = AI_ArtDirector_MobileNetV2(num_attributes=12)
-        model_path = os.path.join(BASE_DIR, "checkpoints","mobilenet_v2","training_v2","mobilenet_v2_best.pth")
+        model_path = os.path.join(BASE_DIR, "checkpoints", "mobilenet_v2", "Training_V2", "mobilenet_v2_best.pth")
     
     try:
         model.load_state_dict(torch.load(model_path, map_location=device))
