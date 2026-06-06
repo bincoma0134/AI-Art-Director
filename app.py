@@ -41,13 +41,21 @@ def extract_dominant_colors(pil_image, k=5, downsample_size=(100, 100)):
     # Flatten ma trận điểm ảnh thành mảng 2D (N x 3) cho thuật toán K-Means
     pixels = img_np.reshape(-1, 3)
     
-    # 2. Thực hiện học cụm không giám sát để tìm ra các tâm cụm phổ màu
-    kmeans = KMeans(n_clusters=k, n_init=10, random_state=42)
+    # 2. Xử lý ngoại lệ ảnh đơn sắc (Solid color) trước khi học cụm
+    unique_colors = np.unique(pixels, axis=0)
+    actual_k = min(k, len(unique_colors))
+    
+    kmeans = KMeans(n_clusters=actual_k, n_init=10, random_state=42)
     kmeans.fit(pixels)
     colors = kmeans.cluster_centers_.astype(int)
     
     # 3. Mã hóa đồng bộ các tâm cụm thành chuỗi ký tự HEX định dạng chuẩn
     hex_colors = [f"#{c[0]:02x}{c[1]:02x}{c[2]:02x}".upper() for c in colors]
+    
+    # Nếu ảnh có ít hơn k màu (ảnh đơn sắc), nhân bản màu để lấp đầy UI
+    while len(hex_colors) < k:
+        hex_colors.append(hex_colors[0])
+        
     return hex_colors
 
 # ==========================================
@@ -349,12 +357,7 @@ if uploaded:
         
         color_html = "<div style='display: flex; gap: 8px; width: 100%;'>"
         for hex_code in dominant_colors:
-            color_html += f"""
-            <div style='flex: 1; text-align: center;'>
-                <div style='height: 45px; background-color: {hex_code}; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 12px rgba(0,0,0,0.2);'></div>
-                <code style='font-size: 0.75rem; color: #e4e4e7; display: block; margin-top: 4px; font-family: monospace;'>{hex_code}</code>
-            </div>
-            """
+            color_html += f"<div style='flex: 1; text-align: center;'><div style='height: 45px; background-color: {hex_code}; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 12px rgba(0,0,0,0.2);'></div><code style='font-size: 0.75rem; color: #e4e4e7; display: block; margin-top: 4px; font-family: monospace;'>{hex_code}</code></div>"
         color_html += "</div>"
         st.markdown(color_html, unsafe_allow_html=True)
         
