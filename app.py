@@ -9,6 +9,8 @@ import streamlit.components.v1 as components
 from io import BytesIO
 from groq import Groq
 from dotenv import load_dotenv
+import numpy as np
+from sklearn.cluster import KMeans
 
 # Tạm thời fix cứng key theo luồng công việc của cậu. Nhớ bảo mật sau này nhé!
 try:
@@ -25,6 +27,28 @@ sys.path.append(os.path.join(BASE_DIR, 'src'))
 from models.efficientnet_b3 import AI_ArtDirector_EfficientNet
 from models.resnet50 import AI_ArtDirector_ResNet50
 from models.mobilenet_v2 import AI_ArtDirector_MobileNetV2
+
+def extract_dominant_colors(pil_image, k=5, downsample_size=(100, 100)):
+    """Trích xuất K màu chủ đạo từ ảnh PIL bằng KMeans (Spatial Downsampling)"""
+    # 1. Hạ độ phân giải ảnh để tăng tốc độ xử lý thời gian thực
+    img_resized = pil_image.resize(downsample_size)
+    img_np = np.array(img_resized)
+    
+    # Loại bỏ kênh Alpha nếu có (đảm bảo cấu trúc ma trận RGB 3 chiều)
+    if img_np.shape[-1] == 4:
+        img_np = img_np[:, :, :3]
+        
+    # Flatten ma trận điểm ảnh thành mảng 2D (N x 3) cho thuật toán K-Means
+    pixels = img_np.reshape(-1, 3)
+    
+    # 2. Thực hiện học cụm không giám sát để tìm ra các tâm cụm phổ màu
+    kmeans = KMeans(n_clusters=k, n_init=10, random_state=42)
+    kmeans.fit(pixels)
+    colors = kmeans.cluster_centers_.astype(int)
+    
+    # 3. Mã hóa đồng bộ các tâm cụm thành chuỗi ký tự HEX định dạng chuẩn
+    hex_colors = [f"#{c[0]:02x}{c[1]:02x}{c[2]:02x}".upper() for c in colors]
+    return hex_colors
 
 # ==========================================
 # 2. APPLE-STYLE LIQUID GLASS UI ENGINE (V7. BULLETPROOF)
@@ -307,9 +331,32 @@ if uploaded:
     # 5.1 Khu vực tính toán điểm số (2 cột song song)
     c1, c2 = st.columns([1, 1.2])
     
+    img = Image.open(uploaded).convert('RGB')
+    
+    # Trích xuất hệ màu song song
+    try:
+        dominant_colors = extract_dominant_colors(img, k=5)
+        color_palette_str = ", ".join(dominant_colors)
+    except Exception:
+        dominant_colors = ["#FFFFFF"] * 5
+        color_palette_str = "Không thể trích xuất"
+        
     with c1:
-        img = Image.open(uploaded).convert('RGB')
         st.image(img, use_container_width=True)
+        
+        # Trực quan hóa Bảng màu thiết kế (Color Palette Banner) phong cách Liquid Glass
+        st.markdown("<div style='margin-top: 15px; margin-bottom: 5px; font-size: 0.9rem; font-weight: 600; color: #a1a1aa;'>🎨 HỆ MÀU TRÍCH XUẤT (DOMINANT PALETTE)</div>", unsafe_allow_html=True)
+        
+        color_html = "<div style='display: flex; gap: 8px; width: 100%;'>"
+        for hex_code in dominant_colors:
+            color_html += f"""
+            <div style='flex: 1; text-align: center;'>
+                <div style='height: 45px; background-color: {hex_code}; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 12px rgba(0,0,0,0.2);'></div>
+                <code style='font-size: 0.75rem; color: #e4e4e7; display: block; margin-top: 4px; font-family: monospace;'>{hex_code}</code>
+            </div>
+            """
+        color_html += "</div>"
+        st.markdown(color_html, unsafe_allow_html=True)
         
     with c2:
         with st.spinner("Decoding aesthetic patterns..."):
@@ -347,8 +394,10 @@ if uploaded:
                 Hệ thống Neural Network của chúng tôi (AI Art Director) vừa chấm điểm kỹ thuật cho một bức ảnh với các thông số khô khan dưới đây:
                 - Điểm Tổng thể (Overall Magnitude): {final_score:.2f}/10
                 - Chi tiết 11 thuộc tính: {dict(zip(attrs, attr_scores))}
+                - Hệ màu gồm 5 mã màu HEX chủ đạo chiếm tỷ trọng lớn nhất: {color_palette_str}
 
                 NHIỆM VỤ CỦA BẠN:
+                Đóng vai trò là "Phần Hồn" của hệ thống. Hãy nhìn nhận bức ảnh bằng đôi mắt của một con người, sau đó kết hợp với các chỉ số AI để viết ra một bài bình duyệt (Critique) mang tính học thuật, sâu sắc và đầy tính nhân văn. Hãy vận dụng kiến thức đại cương về tâm lý học màu sắc và các quy tắc phối màu nghệ thuật để đối chiếu trực tiếp các mã màu HEX trên với các điểm số như "Color Harmony" hay "Vivid Color".
                 Đóng vai trò là "Phần Hồn" của hệ thống. Hãy nhìn nhận bức ảnh bằng đôi mắt của một con người, sau đó kết hợp với các chỉ số AI để viết ra một bài bình duyệt (Critique) mang tính học thuật, sâu sắc và đầy tính nhân văn.
 
                 NGUYÊN TẮC CỐT LÕI (TUYỆT ĐỐI TUÂN THỦ):
@@ -404,6 +453,12 @@ if uploaded:
                 
                 # --- XUẤT BÁO CÁO ---
                 st.markdown("<br><hr style='border-color: rgba(255,255,255,0.1); margin: 30px 0;'>", unsafe_allow_html=True)
+                
+                # Đóng gói mã HTML của hệ màu để nhúng vào báo cáo tải về
+                report_color_html = "<div style='display: flex; gap: 8px; margin-top: 10px;'>"
+                for hex_code in dominant_colors:
+                    report_color_html += f"<div style='flex: 1; height: 35px; background-color: {hex_code}; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1);'></div>"
+                report_color_html += "</div>"
                 
                 # Render HTML Template cao cấp (Sử dụng Double Braces {{ }} cho CSS trong f-string)
                 report_html = f"""
@@ -489,6 +544,11 @@ if uploaded:
                             <div class="score-box">
                                 <div class="score-label">Overall Magnitude</div>
                                 <div class="score-value">{final_score:.2f} <span>/ 10</span></div>
+                            </div>
+
+                            <div style='margin-top: 15px; margin-bottom: 25px; padding: 20px; background: rgba(255,255,255,0.02); border-radius: 16px; border: 1px solid rgba(255,255,255,0.03);'>
+                                <div style='font-size: 0.7rem; font-weight: 600; color: #64748b; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;'>Extracted Color Palette</div>
+                                {report_color_html}
                             </div>
 
                             <div class="content-section" id="parsed-content">
