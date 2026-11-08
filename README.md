@@ -6,6 +6,7 @@
 > **Mã số sinh viên:** 24023036  
 > **Đơn vị:** Trường Đại học Công nghệ - Đại học Quốc gia Hà Nội (UET - VNU)  
 > **Repository:** [https://github.com/bincoma0134/AI-Art-Director.git]
+> **Deployment & Testing:** [https://ai-art-director.streamlit.app/]
 
 ---
 
