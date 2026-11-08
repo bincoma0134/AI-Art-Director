@@ -92,7 +92,7 @@ st.markdown("""<style>
         -webkit-font-smoothing: antialiased;
     }
 
-    /* 2. FROSTED GLASS CARDS SÁNG RỰC, NỔI BẬT NỀN KÍNH TRẮNG SỨ */
+    /* 2. FROSTED GLASS CARDS SÁNG RỰC NỀN KÍNH TRẮNG SỨ */
     [data-testid="column"] {
         background: rgba(255, 255, 255, 0.88) !important;
         backdrop-filter: blur(40px) saturate(200%) !important;
@@ -164,7 +164,7 @@ st.markdown("""<style>
         margin-bottom: 2.2rem !important;
     }
 
-    /* 4. KHỐI ĐIỂM SỐ GỐM SỨ MINT CĂNG MỌNG (CERAMIC MINT EMBOSS) */
+    /* 4. KHỐI ĐIỂM SỐ GỐM SỨ MINT CĂNG MỌNG */
     .score-container {
         display: flex;
         flex-direction: column;
@@ -205,7 +205,7 @@ st.markdown("""<style>
         margin-top: 8px;
     }
 
-    /* 5. KHUNG SUB-CARD CHO 11 THUỘC TÍNH (NGĂN NẮP, SẠCH SẼ) */
+    /* 5. KHUNG SUB-CARD CHO 11 THUỘC TÍNH */
     .attr-wrapper {
         background: #ffffff;
         border: 1px solid rgba(16, 185, 129, 0.18);
@@ -243,7 +243,7 @@ st.markdown("""<style>
         height: 6px !important;
     }
 
-    /* 6. PALETTE SQUIRCLES VỚI MOTION NẢY NHẸ CHUẨN APPLE SPRING */
+    /* 6. PALETTE SQUIRCLES VỚI APPLE SPRING MOTION */
     .palette-container {
         display: flex;
         gap: 10px;
@@ -319,44 +319,69 @@ st.markdown("""<style>
         margin: 0;
     }
 
-    /* 8. FIX TRIỆT ĐỂ: DROPDOWN & SELECTBOX SÁNG TRONG TRẺO (KHÔNG BỊ TỐI ĐEN) */
-    div[data-baseweb="select"] > div {
+    /* 8. SỬA TRIỆT ĐỂ: DROPDOWN & SELECTBOX ĐỒNG BỘ TRẮNG SỨ MINT (KHÔNG CHỒNG CHÉO MẢNG TỐI) */
+    div[data-testid="stSelectbox"],
+    div[data-testid="stSelectbox"] > div,
+    div[data-baseweb="select"],
+    div[data-baseweb="select"] > div,
+    div[data-baseweb="select"] div {
         background-color: #ffffff !important;
-        border: 1.5px solid rgba(16, 185, 129, 0.28) !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+    }
+    div[data-baseweb="select"] > div {
+        border: 1.5px solid rgba(16, 185, 129, 0.3) !important;
         border-radius: 14px !important;
+        box-shadow: 0 4px 14px rgba(16, 185, 129, 0.08) !important;
+    }
+    div[data-baseweb="select"] > div:hover,
+    div[data-baseweb="select"] > div:focus-within {
+        border-color: #10b981 !important;
+        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.14) !important;
+    }
+    div[data-baseweb="select"] span,
+    div[data-baseweb="select"] p {
         color: #0f172a !important;
         font-weight: 600 !important;
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.06) !important;
-        transition: all 0.2s ease !important;
     }
-    div[data-baseweb="select"] > div:hover {
-        border-color: #10b981 !important;
-        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.12) !important;
-    }
-    div[data-baseweb="select"] * {
-        color: #0f172a !important;
+    div[data-baseweb="select"] svg {
         fill: #059669 !important;
+        color: #059669 !important;
     }
-    div[data-baseweb="popover"], div[data-baseweb="menu"], ul[role="listbox"] {
+    div[data-baseweb="popover"],
+    div[data-baseweb="popover"] > div,
+    div[data-baseweb="popover"] ul,
+    ul[role="listbox"] {
         background-color: #ffffff !important;
+        background: #ffffff !important;
         border: 1px solid rgba(16, 185, 129, 0.25) !important;
-        border-radius: 14px !important;
-        box-shadow: 0 16px 36px rgba(16, 185, 129, 0.15) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 16px 36px rgba(16, 185, 129, 0.16) !important;
+        padding: 6px !important;
+    }
+    li[role="option"],
+    li[role="option"] * {
+        background-color: #ffffff !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
     }
     li[role="option"] {
-        background-color: #ffffff !important;
-        color: #0f172a !important;
-        font-weight: 550 !important;
-        border-radius: 8px !important;
-        margin: 2px 6px !important;
-        transition: background-color 0.15s ease !important;
+        border-radius: 10px !important;
+        margin: 2px 0 !important;
+        padding: 8px 12px !important;
+        transition: all 0.15s ease !important;
     }
-    li[role="option"]:hover, li[aria-selected="true"] {
+    li[role="option"]:hover,
+    li[role="option"]:hover *,
+    li[aria-selected="true"],
+    li[aria-selected="true"] * {
         background-color: #ecfdf5 !important;
+        background: #ecfdf5 !important;
         color: #047857 !important;
+        font-weight: 700 !important;
     }
 
-    /* 9. FILE UPLOADER SÁNG BỪNG VÀ VIỀN MINT NỔI BẬT */
+    /* 9. SỬA TRIỆT ĐỂ: TOÀN BỘ KHU VỰC VÀ BOX SAU UPLOAD ẢNH ĐỀU TRẮNG SÁNG & MINT */
     [data-testid="stFileUploadDropzone"] {
         background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%) !important;
         border: 1.8px dashed #10b981 !important;
@@ -387,7 +412,73 @@ st.markdown("""<style>
         color: #0f172a !important;
     }
 
-    /* 10. APPLE ACTION BUTTON VỚI HỆ HIỆU ỨNG VẬT LÝ */
+    /* Card hiển thị tệp sau khi upload thành công */
+    [data-testid="stFileUploaderFileData"],
+    [data-testid="stFileUploaderFileData"] > div,
+    div[data-testid="stFileUploaderFileData"] {
+        background-color: #ffffff !important;
+        background: #ffffff !important;
+        border: 1.5px solid rgba(16, 185, 129, 0.3) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 4px 14px rgba(16, 185, 129, 0.08) !important;
+    }
+    [data-testid="stFileUploaderFileData"] * {
+        color: #0f172a !important;
+    }
+    [data-testid="stFileUploaderFileData"] svg {
+        fill: #059669 !important;
+    }
+    [data-testid="stFileUploaderDeleteBtn"] button {
+        background-color: #ecfdf5 !important;
+        border: 1px solid rgba(16, 185, 129, 0.25) !important;
+        color: #059669 !important;
+        border-radius: 50% !important;
+    }
+
+    /* Spinner & Alert trạng thái chuyển thành màu Mint sáng */
+    div[data-testid="stAlert"] {
+        background-color: #ecfdf5 !important;
+        background: #ecfdf5 !important;
+        border: 1px solid rgba(16, 185, 129, 0.3) !important;
+        border-radius: 16px !important;
+    }
+    div[data-testid="stAlert"] * {
+        color: #047857 !important;
+    }
+
+    /* 10. SỬA TRIỆT ĐỂ: DÒNG CHỈ DẪN CUỘN THOÁNG ĐẠT TỰ NHIÊN (BỎ VIỀN HỘP) */
+    .gentle-scroll {
+        position: fixed;
+        bottom: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        color: #059669 !important;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        pointer-events: none;
+        z-index: 99;
+        opacity: 0.8;
+        transition: opacity 0.35s ease;
+    }
+    .gentle-scroll svg {
+        stroke: #10b981 !important;
+        animation: floatChevron 1.6s infinite ease-in-out;
+    }
+    @keyframes floatChevron {
+        0%, 100% { transform: translateY(0); opacity: 0.7; }
+        50% { transform: translateY(5px); opacity: 1; }
+    }
+
+    /* 11. APPLE ACTION BUTTON VỚI HỆ HIỆU ỨNG VẬT LÝ */
     .stDownloadButton > button {
         background: linear-gradient(180deg, #10b981 0%, #059669 100%) !important;
         border: 1px solid rgba(255, 255, 255, 0.5) !important;
@@ -407,17 +498,17 @@ st.markdown("""<style>
     .stDownloadButton > button:active {
         transform: scale(0.97) !important;
     }
-
-    .gentle-scroll {
-        background: rgba(255, 255, 255, 0.9) !important;
-        border: 1px solid rgba(16, 185, 129, 0.25) !important;
-        color: #047857 !important;
-        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.12) !important;
-    }
     
+    [data-testid="column"] h3 {
+        color: #047857 !important;
+        font-weight: 750 !important;
+        margin-top: 18px !important;
+        margin-bottom: 8px !important;
+    }
     [data-testid="column"] [data-testid="stMarkdownContainer"] p, 
     [data-testid="column"] [data-testid="stMarkdownContainer"] li {
         color: #1e293b !important;
+        line-height: 1.8 !important;
     }
 </style>""", unsafe_allow_html=True)
 
@@ -463,8 +554,8 @@ st.markdown("""
 # Smart gentle scroll cue
 st.markdown("""
 <div class="gentle-scroll" id="scroll-pill">
-    <span>Cuộn để khám phá phân tích</span>
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    <span>Cuộn để khám phá</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
 </div>
 """, unsafe_allow_html=True)
 
@@ -657,7 +748,7 @@ if uploaded:
                     temperature=0.6,
                 )
                 response_text = chat_completion.choices[0].message.content
-                st.markdown(f'<div style="color: #1e293b; line-height: 1.8; font-size: 0.96rem;">{response_text}</div>', unsafe_allow_html=True)
+                st.markdown(response_text)
                 
             except Exception as e:
                 st.error(f"Quá trình phân tích bị gián đoạn: {e}")
