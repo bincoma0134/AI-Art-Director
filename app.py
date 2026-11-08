@@ -76,66 +76,65 @@ st.markdown("""<style>
 
     .block-container {
         max-width: 1180px !important;
-        padding-top: 2rem !important;
+        padding-top: 1.8rem !important;
         padding-bottom: 5rem !important;
     }
 
-    /* 1. NỀN SÁNG PORCELAIN VỚI DẢI MINT KHUẾCH TÁN (LIGHT AMBIENT MINT) */
+    /* 1. NỀN SÁNG PORCELAIN VỚI LỚP KHUẾCH TÁN MINT TINH KHÔI */
     .stApp, [data-testid="stAppViewContainer"] {
-        background-color: #f7faf9 !important;
+        background-color: #f6faf8 !important;
         background-image: 
-            radial-gradient(ellipse 80% 50% at 50% -15%, rgba(16, 185, 129, 0.12) 0%, transparent 70%),
-            radial-gradient(circle 500px at 5% 25%, rgba(52, 211, 153, 0.08) 0%, transparent 60%),
-            radial-gradient(circle 600px at 95% 85%, rgba(5, 150, 105, 0.06) 0%, transparent 65%) !important;
+            radial-gradient(ellipse 90% 60% at 50% -15%, rgba(16, 185, 129, 0.14) 0%, transparent 70%),
+            radial-gradient(circle 500px at 0% 30%, rgba(52, 211, 153, 0.1) 0%, transparent 60%),
+            radial-gradient(circle 600px at 100% 80%, rgba(5, 150, 105, 0.08) 0%, transparent 65%) !important;
         font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Plus Jakarta Sans", sans-serif !important;
         color: #0f172a !important;
         -webkit-font-smoothing: antialiased;
     }
 
-    /* 2. FROSTED GLASS CARDS SÁNG, TRONG TRẺO VÀ CHIỀU SÂU VẬT LIỆU */
+    /* 2. FROSTED GLASS CARDS SÁNG RỰC, NỔI BẬT NỀN KÍNH TRẮNG SỨ */
     [data-testid="column"] {
-        background: rgba(255, 255, 255, 0.78) !important;
-        backdrop-filter: blur(35px) saturate(190%) !important;
-        -webkit-backdrop-filter: blur(35px) saturate(190%) !important;
-        border: 1px solid rgba(16, 185, 129, 0.16) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.95) !important;
-        border-radius: 24px !important;
+        background: rgba(255, 255, 255, 0.88) !important;
+        backdrop-filter: blur(40px) saturate(200%) !important;
+        -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
+        border: 1px solid rgba(16, 185, 129, 0.22) !important;
+        border-top: 1.5px solid #ffffff !important;
+        border-radius: 26px !important;
         padding: 24px !important;
-        box-shadow: 0 16px 36px -12px rgba(5, 150, 105, 0.09), 0 4px 16px rgba(0, 0, 0, 0.03) !important;
-        transition: box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.12), 0 4px 16px rgba(0, 0, 0, 0.02) !important;
+        transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s ease !important;
         overflow: visible !important;
     }
     [data-testid="column"]:hover {
-        box-shadow: 0 20px 42px -10px rgba(5, 150, 105, 0.14), 0 6px 20px rgba(0, 0, 0, 0.04) !important;
+        box-shadow: 0 24px 48px -12px rgba(16, 185, 129, 0.18), 0 6px 20px rgba(0, 0, 0, 0.03) !important;
     }
 
     [data-testid="stImage"] img {
-        border-radius: 16px !important;
-        border: 1px solid rgba(16, 185, 129, 0.18) !important;
-        box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.1) !important;
+        border-radius: 18px !important;
+        border: 1px solid rgba(16, 185, 129, 0.25) !important;
+        box-shadow: 0 12px 28px -6px rgba(5, 150, 105, 0.12) !important;
     }
 
-    /* 3. CAPSULE BADGE & TYPOGRAPHY CHUẨN CÔNG NGHỆ */
+    /* 3. CAPSULE BADGE & HERO TYPOGRAPHY */
     .apple-badge {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: rgba(236, 253, 245, 0.9);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(16, 185, 129, 0.25);
+        background: #ecfdf5;
+        border: 1px solid rgba(16, 185, 129, 0.35);
         color: #047857;
-        padding: 6px 16px;
+        padding: 6px 18px;
         border-radius: 980px;
-        font-size: 0.74rem;
-        font-weight: 700;
+        font-size: 0.75rem;
+        font-weight: 750;
         letter-spacing: 0.04em;
         text-transform: uppercase;
         margin-bottom: 0.8rem;
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12);
+        box-shadow: 0 4px 14px rgba(16, 185, 129, 0.14);
     }
     .apple-badge-dot {
-        width: 7px;
-        height: 7px;
+        width: 8px;
+        height: 8px;
         border-radius: 50%;
         background-color: #10b981;
         box-shadow: 0 0 10px #10b981;
@@ -143,46 +142,46 @@ st.markdown("""<style>
     }
     @keyframes mintPulse {
         0%, 100% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.65; transform: scale(1.15); }
+        50% { opacity: 0.6; transform: scale(1.2); }
     }
     .hero-title {
-        font-size: 3.3rem !important;
+        font-size: 3.4rem !important;
         font-weight: 800 !important;
-        letter-spacing: -0.035em !important;
+        letter-spacing: -0.04em !important;
         line-height: 1.1 !important;
-        background: linear-gradient(180deg, #0f172a 30%, #334155 100%) !important;
+        background: linear-gradient(180deg, #0f172a 35%, #334155 100%) !important;
         -webkit-background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
         text-align: center;
         margin: 0 0 0.5rem 0 !important;
     }
     .hero-subtitle {
-        font-size: 0.98rem !important;
+        font-size: 1rem !important;
         color: #475569 !important;
         text-align: center;
-        font-weight: 450 !important;
+        font-weight: 500 !important;
         letter-spacing: -0.01em !important;
         margin-bottom: 2.2rem !important;
     }
 
-    /* 4. KHỐI ĐIỂM SỐ NỔI KHỐI MINT CERAMIC (SẮC & SANG) */
+    /* 4. KHỐI ĐIỂM SỐ GỐM SỨ MINT CĂNG MỌNG (CERAMIC MINT EMBOSS) */
     .score-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         padding: 1.8rem 1rem 1.4rem 1rem;
-        background: linear-gradient(180deg, rgba(236, 253, 245, 0.85) 0%, rgba(255, 255, 255, 0.9) 100%);
-        border: 1px solid rgba(16, 185, 129, 0.22);
-        border-top: 1px solid rgba(255, 255, 255, 0.9);
-        border-radius: 20px;
-        margin-bottom: 1.4rem;
-        box-shadow: inset 0 1px 1px rgba(255,255,255,0.8), 0 8px 24px rgba(16, 185, 129, 0.08);
+        background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+        border: 1px solid rgba(16, 185, 129, 0.28);
+        border-top: 2px solid #ffffff;
+        border-radius: 22px;
+        margin-bottom: 1.3rem;
+        box-shadow: inset 0 2px 4px rgba(255,255,255,0.9), 0 10px 26px rgba(16, 185, 129, 0.1);
     }
     .score-number {
-        font-size: 4.8rem;
-        font-weight: 800;
-        letter-spacing: -0.04em;
+        font-size: 5rem;
+        font-weight: 850;
+        letter-spacing: -0.045em;
         line-height: 1;
         background: linear-gradient(135deg, #059669 0%, #10b981 100%);
         -webkit-background-clip: text;
@@ -190,50 +189,61 @@ st.markdown("""<style>
         font-feature-settings: "tnum";
     }
     .score-number span {
-        font-size: 1.7rem;
-        font-weight: 500;
+        font-size: 1.8rem;
+        font-weight: 600;
         color: #059669;
         -webkit-text-fill-color: #059669;
-        opacity: 0.7;
+        opacity: 0.75;
         margin-left: 4px;
     }
     .score-caption {
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
+        font-size: 0.74rem;
+        font-weight: 750;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         color: #047857;
         margin-top: 8px;
     }
 
-    /* 5. TIẾN TRÌNH THUỘC TÍNH: MINT GRADIENT MƯỢT MÀ */
+    /* 5. KHUNG SUB-CARD CHO 11 THUỘC TÍNH (NGĂN NẮP, SẠCH SẼ) */
+    .attr-wrapper {
+        background: #ffffff;
+        border: 1px solid rgba(16, 185, 129, 0.18);
+        border-radius: 18px;
+        padding: 14px 18px;
+        box-shadow: 0 4px 14px rgba(16, 185, 129, 0.04);
+    }
     .attr-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 3px;
-        margin-top: 8px;
+        margin-bottom: 2px;
+        margin-top: 7px;
         font-size: 0.85rem;
         color: #1e293b;
-        font-weight: 550;
+        font-weight: 600;
     }
     .attr-val {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 0.8rem;
+        font-size: 0.82rem;
         color: #059669;
         font-weight: 700;
+        background: #ecfdf5;
+        padding: 1px 7px;
+        border-radius: 6px;
+        border: 1px solid rgba(16, 185, 129, 0.2);
     }
     .stProgress > div > div > div > div {
         background: linear-gradient(90deg, #10b981 0%, #059669 100%) !important;
         border-radius: 980px !important;
     }
     .stProgress > div > div > div {
-        background-color: rgba(16, 185, 129, 0.12) !important;
+        background-color: #e2e8f0 !important;
         border-radius: 980px !important;
         height: 6px !important;
     }
 
-    /* 6. PALETTE SQUIRCLES VỚI SPRING HOVER MOTION */
+    /* 6. PALETTE SQUIRCLES VỚI MOTION NẢY NHẸ CHUẨN APPLE SPRING */
     .palette-container {
         display: flex;
         gap: 10px;
@@ -245,119 +255,168 @@ st.markdown("""<style>
         display: flex;
         flex-direction: column;
         align-items: center;
-        background: rgba(255, 255, 255, 0.85);
-        border: 1px solid rgba(16, 185, 129, 0.18);
+        background: #ffffff;
+        border: 1px solid rgba(16, 185, 129, 0.22);
         border-radius: 14px;
         padding: 8px 6px;
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.06);
-        transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08);
+        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease !important;
     }
     .swatch-card:hover {
-        transform: translateY(-3px) scale(1.02);
+        transform: translateY(-4px) scale(1.03);
         border-color: #10b981;
-        box-shadow: 0 8px 18px rgba(16, 185, 129, 0.18);
+        box-shadow: 0 10px 22px rgba(16, 185, 129, 0.22);
     }
     .swatch-pill {
         width: 100%;
         height: 38px;
         border-radius: 10px;
-        border: 1px solid rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.1);
         box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
     }
     .swatch-code {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 0.7rem;
-        color: #334155;
+        font-size: 0.72rem;
+        color: #1e293b;
         margin-top: 6px;
-        font-weight: 600;
+        font-weight: 650;
     }
 
-    /* 7. SIDEBAR MACOS TRANSLUCENT LIGHT */
+    /* 7. SIDEBAR MACOS LIGHT TRANSLUCENT */
     [data-testid="stSidebar"] {
-        background-color: rgba(247, 250, 249, 0.85) !important;
-        backdrop-filter: blur(40px) saturate(180%) !important;
-        -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
-        border-right: 1px solid rgba(16, 185, 129, 0.14) !important;
+        background-color: rgba(246, 250, 248, 0.88) !important;
+        backdrop-filter: blur(40px) saturate(190%) !important;
+        -webkit-backdrop-filter: blur(40px) saturate(190%) !important;
+        border-right: 1px solid rgba(16, 185, 129, 0.18) !important;
     }
     .sidebar-meta-box {
-        background: rgba(255, 255, 255, 0.8);
-        border: 1px solid rgba(16, 185, 129, 0.18);
-        border-top: 1px solid rgba(255, 255, 255, 0.95);
-        border-radius: 18px;
+        background: #ffffff;
+        border: 1px solid rgba(16, 185, 129, 0.22);
+        border-top: 2px solid #ffffff;
+        border-radius: 20px;
         padding: 18px;
         margin-top: 14px;
-        box-shadow: 0 8px 20px -8px rgba(16, 185, 129, 0.1);
+        box-shadow: 0 10px 24px -10px rgba(16, 185, 129, 0.14);
     }
     .meta-sub-header {
         color: #64748b;
         font-size: 0.68rem;
-        font-weight: 700;
+        font-weight: 750;
         letter-spacing: 0.06em;
         text-transform: uppercase;
         margin: 0 0 3px 0;
     }
     .meta-title {
-        font-size: 0.98rem;
-        font-weight: 700;
+        font-size: 1rem;
+        font-weight: 750;
         color: #0f172a;
         margin: 0 0 2px 0;
     }
     .meta-info {
-        font-size: 0.8rem;
+        font-size: 0.82rem;
         color: #059669;
-        font-weight: 600;
+        font-weight: 650;
         margin: 0;
     }
 
-    /* 8. CONTROLS, UPLOADER & APPLE ACTION BUTTON (MINT SẮC) */
+    /* 8. FIX TRIỆT ĐỂ: DROPDOWN & SELECTBOX SÁNG TRONG TRẺO (KHÔNG BỊ TỐI ĐEN) */
     div[data-baseweb="select"] > div {
-        background-color: rgba(255, 255, 255, 0.85) !important;
-        border: 1px solid rgba(16, 185, 129, 0.22) !important;
+        background-color: #ffffff !important;
+        border: 1.5px solid rgba(16, 185, 129, 0.28) !important;
         border-radius: 14px !important;
         color: #0f172a !important;
+        font-weight: 600 !important;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.06) !important;
+        transition: all 0.2s ease !important;
     }
+    div[data-baseweb="select"] > div:hover {
+        border-color: #10b981 !important;
+        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.12) !important;
+    }
+    div[data-baseweb="select"] * {
+        color: #0f172a !important;
+        fill: #059669 !important;
+    }
+    div[data-baseweb="popover"], div[data-baseweb="menu"], ul[role="listbox"] {
+        background-color: #ffffff !important;
+        border: 1px solid rgba(16, 185, 129, 0.25) !important;
+        border-radius: 14px !important;
+        box-shadow: 0 16px 36px rgba(16, 185, 129, 0.15) !important;
+    }
+    li[role="option"] {
+        background-color: #ffffff !important;
+        color: #0f172a !important;
+        font-weight: 550 !important;
+        border-radius: 8px !important;
+        margin: 2px 6px !important;
+        transition: background-color 0.15s ease !important;
+    }
+    li[role="option"]:hover, li[aria-selected="true"] {
+        background-color: #ecfdf5 !important;
+        color: #047857 !important;
+    }
+
+    /* 9. FILE UPLOADER SÁNG BỪNG VÀ VIỀN MINT NỔI BẬT */
     [data-testid="stFileUploadDropzone"] {
-        background: rgba(236, 253, 245, 0.45) !important;
-        border: 1.5px dashed rgba(16, 185, 129, 0.35) !important;
-        border-radius: 22px !important;
-        padding: 2.5rem 1.5rem !important;
+        background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%) !important;
+        border: 1.8px dashed #10b981 !important;
+        border-radius: 24px !important;
+        padding: 2.4rem 1.5rem !important;
+        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.08) !important;
         transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1) !important;
     }
     [data-testid="stFileUploadDropzone"]:hover {
-        background: rgba(236, 253, 245, 0.8) !important;
-        border: 1.5px dashed #059669 !important;
-        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15) !important;
+        background: #ecfdf5 !important;
+        border-color: #059669 !important;
+        box-shadow: 0 12px 30px rgba(16, 185, 129, 0.18) !important;
+        transform: translateY(-2px);
     }
-
-    .stDownloadButton > button {
-        background: linear-gradient(180deg, #10b981 0%, #059669 100%) !important;
-        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    [data-testid="stFileUploadDropzone"] button {
+        background: #10b981 !important;
+        border: none !important;
         border-radius: 980px !important;
         color: #ffffff !important;
         font-weight: 700 !important;
+        padding: 6px 18px !important;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+    }
+    [data-testid="stFileUploadDropzone"] button:hover {
+        background: #059669 !important;
+    }
+    [data-testid="stFileUploadDropzone"] * {
+        color: #0f172a !important;
+    }
+
+    /* 10. APPLE ACTION BUTTON VỚI HỆ HIỆU ỨNG VẬT LÝ */
+    .stDownloadButton > button {
+        background: linear-gradient(180deg, #10b981 0%, #059669 100%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
+        border-radius: 980px !important;
+        color: #ffffff !important;
+        font-weight: 750 !important;
         letter-spacing: 0.01em !important;
-        padding: 12px 28px !important;
-        box-shadow: 0 8px 24px rgba(5, 150, 105, 0.3) !important;
-        transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        padding: 13px 30px !important;
+        box-shadow: 0 8px 24px rgba(5, 150, 105, 0.35) !important;
+        transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
     }
     .stDownloadButton > button:hover {
         background: linear-gradient(180deg, #34d399 0%, #047857 100%) !important;
-        transform: scale(1.015) !important;
-        box-shadow: 0 10px 28px rgba(5, 150, 105, 0.4) !important;
+        transform: scale(1.02);
+        box-shadow: 0 12px 30px rgba(5, 150, 105, 0.45) !important;
     }
     .stDownloadButton > button:active {
-        transform: scale(0.98) !important;
+        transform: scale(0.97) !important;
     }
 
     .gentle-scroll {
-        background: rgba(255, 255, 255, 0.85) !important;
-        border: 1px solid rgba(16, 185, 129, 0.2) !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        border: 1px solid rgba(16, 185, 129, 0.25) !important;
         color: #047857 !important;
-        box-shadow: 0 4px 16px rgba(16, 185, 129, 0.1) !important;
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.12) !important;
     }
     
-    /* Đồng bộ hiển thị chữ trong khối phê duyệt nghệ thuật */
-    [data-testid="column"] [data-testid="stMarkdownContainer"] p {
+    [data-testid="column"] [data-testid="stMarkdownContainer"] p, 
+    [data-testid="column"] [data-testid="stMarkdownContainer"] li {
         color: #1e293b !important;
     }
 </style>""", unsafe_allow_html=True)
@@ -482,9 +541,12 @@ if uploaded:
     with c1:
         st.image(img, use_container_width=True)
         
-        st.markdown("""<div style='margin-top: 16px; display: flex; justify-content: space-between; align-items: baseline;'>
-<span style='font-size: 0.76rem; font-weight: 700; color: #047857; text-transform: uppercase; letter-spacing: 0.06em;'>Bảng màu chủ đạo</span>
-<span style='font-size: 0.72rem; color: #64748b;'>K-Means (k=5)</span>
+        st.markdown("""<div style='margin-top: 18px; display: flex; justify-content: space-between; align-items: center;'>
+<div style='display: flex; align-items: center; gap: 6px;'>
+<span style='color: #10b981; font-size: 0.9rem;'>🎨</span>
+<span style='font-size: 0.78rem; font-weight: 750; color: #047857; text-transform: uppercase; letter-spacing: 0.06em;'>Bảng màu chủ đạo</span>
+</div>
+<span style='font-size: 0.72rem; color: #059669; background: #ecfdf5; padding: 2px 8px; border-radius: 6px; font-weight: 600; border: 1px solid rgba(16, 185, 129, 0.2);'>K-Means (k=5)</span>
 </div>""", unsafe_allow_html=True)
         
         color_html = "<div class='palette-container'>"
@@ -510,20 +572,28 @@ if uploaded:
 <div class="score-caption">Overall Aesthetic Magnitude</div>
 </div>""", unsafe_allow_html=True)
             
-            st.markdown("<p style='font-size: 0.76rem; font-weight: 700; color: #047857; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px;'>11 Thuộc tính Nguyên lý Thiết kế</p>", unsafe_allow_html=True)
+            st.markdown("""<div class='attr-wrapper'>
+<div style='display: flex; align-items: center; gap: 6px; margin-bottom: 6px;'>
+<span style='color: #10b981; font-size: 0.85rem;'>📐</span>
+<span style='font-size: 0.78rem; font-weight: 750; color: #047857; text-transform: uppercase; letter-spacing: 0.06em;'>11 Thuộc tính Nguyên lý Thiết kế</span>
+</div>""", unsafe_allow_html=True)
             for a, s in zip(attrs, attr_scores):
                 st.markdown(f"""<div class="attr-row">
 <span>{a}</span><span class="attr-val">{s:.1f}</span>
 </div>""", unsafe_allow_html=True)
                 st.progress(float(s/10))
+            st.markdown("</div>", unsafe_allow_html=True)
 
     # Khối bình duyệt nghệ thuật
     st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
     critique_panel = st.columns(1)[0]
     with critique_panel:
-        st.markdown("""<div style='display: flex; align-items: center; gap: 8px; margin-bottom: 16px;'>
-<span style='color: #10b981; font-size: 1.15rem;'>✦</span>
-<h3 style='margin: 0; font-size: 1.25rem; font-weight: 700; color: #0f172a; letter-spacing: -0.02em;'>Bình duyệt Nghệ thuật Chuyên sâu</h3>
+        st.markdown("""<div style='display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid rgba(16, 185, 129, 0.16);'>
+<div style='width: 32px; height: 32px; border-radius: 10px; background: #ecfdf5; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(16, 185, 129, 0.3); font-size: 1rem; color: #10b981;'>✦</div>
+<div>
+<h3 style='margin: 0; font-size: 1.25rem; font-weight: 750; color: #0f172a; letter-spacing: -0.02em;'>Bình duyệt Nghệ thuật Chuyên sâu</h3>
+<p style='margin: 0; font-size: 0.78rem; color: #64748b;'>Phân tích đa phương thức bởi Senior Art Director Engine</p>
+</div>
 </div>""", unsafe_allow_html=True)
     
     if GROQ_API_KEY:
