@@ -75,9 +75,10 @@ st.markdown("""<style>
     footer { visibility: hidden; }
 
     .block-container {
-        max-width: 1180px !important;
+        max-width: 940px !important;
         padding-top: 1.8rem !important;
         padding-bottom: 5rem !important;
+        margin: 0 auto !important;
     }
 
     /* 1. NỀN SÁNG PORCELAIN VỚI LỚP KHUẾCH TÁN MINT TINH KHÔI */
@@ -381,17 +382,18 @@ st.markdown("""<style>
         font-weight: 700 !important;
     }
 
-    /* 9. SỬA TRIỆT ĐỂ: TOÀN BỘ KHU VỰC VÀ BOX DROPZONE FILE UPLOADER SÁNG TRẮNG SỨ & MINT */
+    /* 9. SỬA TRIỆT ĐỂ: CĂN GIỮA TRỌNG TÂM (TOP, BOTTOM, CENTER) DROPZONE FILE UPLOADER */
     [data-testid="stWidgetLabel"],
     [data-testid="stWidgetLabel"] *,
     [data-testid="stFileUploader"] label {
         color: #0f172a !important;
         font-weight: 750 !important;
         font-size: 0.95rem !important;
-        margin-bottom: 8px !important;
+        margin-bottom: 12px !important;
+        display: block !important;
+        text-align: center !important;
     }
 
-    /* Bắt trọn vẹn cả hai định danh stFileUploaderDropzone và stFileUploadDropzone */
     [data-testid*="Dropzone"],
     [data-testid="stFileUploaderDropzone"],
     [data-testid="stFileUploadDropzone"],
@@ -401,10 +403,27 @@ st.markdown("""<style>
         background-color: #ffffff !important;
         border: 1.8px dashed #10b981 !important;
         border-radius: 22px !important;
-        padding: 2.2rem 1.5rem !important;
+        padding: 2.5rem 1.5rem !important;
+        min-height: 130px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
         box-shadow: 0 10px 28px rgba(16, 185, 129, 0.08) !important;
         transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1) !important;
     }
+    
+    /* Căn giữa dọc và ngang toàn bộ nội dung bên trong box upload */
+    [data-testid*="Dropzone"] > div,
+    [data-testid="stFileUploaderDropzone"] > div {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 14px !important;
+        width: 100% !important;
+    }
+    
     [data-testid*="Dropzone"]:hover,
     [data-testid="stFileUploaderDropzone"]:hover,
     [data-testid="stFileUploader"] section:hover {
@@ -662,7 +681,7 @@ if uploaded:
         dominant_colors = ["#FFFFFF"] * 5
         color_palette_str = "Không thể trích xuất"
 
-    c1, c2 = st.columns([1, 1.15], gap="large")
+    c1, c2 = st.columns([1.1, 1], gap="large")
     
     with c1:
         st.image(img, use_container_width=True)
