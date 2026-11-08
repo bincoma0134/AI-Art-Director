@@ -75,7 +75,8 @@ st.markdown("""<style>
     footer { visibility: hidden; }
 
     .block-container {
-        max-width: 940px !important;
+        max-width: 1380px !important;
+        width: 92% !important;
         padding-top: 1.8rem !important;
         padding-bottom: 5rem !important;
         margin: 0 auto !important;
