@@ -65,307 +65,269 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.markdown("""
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+st.markdown("""<style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-    /* --- 1. RESET STREAMLIT CHROME & NỀN DEEP CANVAS --- */
     header[data-testid="stHeader"] {
         background: transparent !important;
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
     }
     .stAppDeployButton { display: none !important; }
     footer { visibility: hidden; }
 
     .block-container {
-        max-width: 1240px !important;
-        padding-top: 2.2rem !important;
-        padding-bottom: 4rem !important;
+        max-width: 1180px !important;
+        padding-top: 2rem !important;
+        padding-bottom: 5rem !important;
     }
 
-    /* Apple Dark Palette: Tối giản, sâu thẳm, không đổ màu neon chói gắt */
+    /* Nền Slate có chiều sâu và ánh sáng khuếch tán chuẩn Apple dark mode */
     .stApp, [data-testid="stAppViewContainer"] {
-        background-color: #0b0b0d !important;
+        background-color: #121316 !important;
         background-image: 
-            radial-gradient(ellipse 90% 40% at 50% -10%, rgba(255, 255, 255, 0.04) 0%, transparent 80%),
-            radial-gradient(circle 600px at 85% 90%, rgba(10, 132, 255, 0.025) 0%, transparent 70%) !important;
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", sans-serif !important;
-        color: #f5f5f7 !important;
+            radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 60%),
+            radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 45%),
+            radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.06) 0%, transparent 50%) !important;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Plus Jakarta Sans", sans-serif !important;
+        color: #f1f5f9 !important;
         -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
     }
 
-    /* --- 2. APPLE TYPOGRAPHY SYSTEM --- */
+    /* Biến tất cả các cột Streamlit thành Frosted Glass Card tự nhiên, không bị đè che */
+    [data-testid="column"] {
+        background: rgba(25, 27, 33, 0.65) !important;
+        backdrop-filter: blur(35px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(35px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
+        border-radius: 24px !important;
+        padding: 24px !important;
+        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+        overflow: visible !important;
+    }
+
+    [data-testid="stImage"] img {
+        border-radius: 16px !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    /* Badge & Typography */
     .apple-badge {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        background: rgba(255, 255, 255, 0.05);
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.06);
         backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-top: 1px solid rgba(255, 255, 255, 0.16);
-        color: #86868b;
-        padding: 5px 14px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-top: 1px solid rgba(255, 255, 255, 0.22);
+        color: #93c5fd;
+        padding: 6px 16px;
         border-radius: 980px;
-        font-size: 0.72rem;
-        font-weight: 500;
-        letter-spacing: 0.06em;
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
         text-transform: uppercase;
         margin-bottom: 0.8rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     .apple-badge-dot {
-        width: 6px;
-        height: 6px;
+        width: 7px;
+        height: 7px;
         border-radius: 50%;
-        background-color: #2997ff;
+        background-color: #38bdf8;
+        box-shadow: 0 0 8px #38bdf8;
     }
     .hero-title {
-        font-size: 3.4rem !important;
+        font-size: 3.2rem !important;
         font-weight: 700 !important;
-        letter-spacing: -0.035em !important;
-        line-height: 1.08 !important;
-        color: #f5f5f7 !important;
+        letter-spacing: -0.03em !important;
+        line-height: 1.1 !important;
+        background: linear-gradient(180deg, #ffffff 30%, #cbd5e1 100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
         text-align: center;
-        margin: 0 0 0.4rem 0 !important;
+        margin: 0 0 0.5rem 0 !important;
     }
     .hero-subtitle {
-        font-size: 0.95rem !important;
-        color: #86868b !important;
+        font-size: 0.98rem !important;
+        color: #94a3b8 !important;
         text-align: center;
         font-weight: 400 !important;
         letter-spacing: -0.01em !important;
-        margin-bottom: 2.5rem !important;
+        margin-bottom: 2.2rem !important;
     }
 
-    /* --- 3. APPLE FROSTED GLASS CARDS --- */
-    .apple-card {
-        background: rgba(24, 24, 27, 0.55);
-        backdrop-filter: blur(30px) saturate(190%);
-        -webkit-backdrop-filter: blur(30px) saturate(190%);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-top: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 22px;
-        padding: 24px;
-        box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.45);
-        transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.25s ease;
-    }
-    .apple-card:hover {
-        border-color: rgba(255, 255, 255, 0.12);
-    }
-
-    /* Reset override cho cột Streamlit để không tạo khối lồng vỡ layout */
-    [data-testid="column"] {
-        padding: 0 0.5rem !important;
-    }
-
-    /* --- 4. SCORE DISPLAY (APPLE HEALTH / FITNESS STYLE) --- */
+    /* Khối điểm số phong cách Apple Health / Fitness */
     .score-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         padding: 1.8rem 1rem 1.4rem 1rem;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 20px;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.4rem;
+        box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), 0 8px 24px rgba(0,0,0,0.25);
     }
     .score-number {
-        font-size: 5rem;
-        font-weight: 600;
+        font-size: 4.8rem;
+        font-weight: 700;
         letter-spacing: -0.04em;
         line-height: 1;
-        color: #f5f5f7;
+        background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         font-feature-settings: "tnum";
     }
     .score-number span {
-        font-size: 1.8rem;
-        font-weight: 400;
-        color: #6e6e73;
-        letter-spacing: 0;
-        margin-left: 2px;
+        font-size: 1.7rem;
+        font-weight: 500;
+        color: #64748b;
+        -webkit-text-fill-color: #64748b;
+        margin-left: 4px;
     }
     .score-caption {
         font-size: 0.72rem;
         font-weight: 600;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: #86868b;
-        margin-top: 6px;
+        color: #94a3b8;
+        margin-top: 8px;
     }
 
-    /* --- 5. PROGRESS BARS & ATTRIBUTES --- */
+    /* Bảng tiến trình 11 thuộc tính */
     .attr-row {
         display: flex;
         justify-content: space-between;
-        align-items: baseline;
-        margin-bottom: 4px;
-        margin-top: 10px;
-        font-size: 0.84rem;
-        color: #d1d1d6;
-        letter-spacing: -0.01em;
+        align-items: center;
+        margin-bottom: 3px;
+        margin-top: 8px;
+        font-size: 0.85rem;
+        color: #e2e8f0;
+        font-weight: 500;
     }
     .attr-val {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 0.78rem;
-        color: #86868b;
+        font-size: 0.8rem;
+        color: #38bdf8;
+        font-weight: 600;
     }
     .stProgress > div > div > div > div {
-        background: linear-gradient(90deg, #2997ff 0%, #5e5ce6 100%) !important;
+        background: linear-gradient(90deg, #0ea5e9 0%, #6366f1 100%) !important;
         border-radius: 980px !important;
     }
     .stProgress > div > div > div {
-        background-color: rgba(255, 255, 255, 0.06) !important;
+        background-color: rgba(255, 255, 255, 0.08) !important;
         border-radius: 980px !important;
         height: 6px !important;
     }
 
-    /* --- 6. COLOR PALETTE SWATCHES (SQUIRCLES) --- */
+    /* Palette Squircle Chips */
     .palette-container {
         display: flex;
         gap: 10px;
         width: 100%;
-        margin-top: 12px;
+        margin-top: 10px;
     }
     .swatch-card {
         flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: 12px;
-        padding: 6px;
-        transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-    .swatch-card:hover {
-        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 8px 6px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     .swatch-pill {
         width: 100%;
         height: 38px;
-        border-radius: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
     }
     .swatch-code {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 0.68rem;
-        color: #a1a1a6;
+        font-size: 0.7rem;
+        color: #cbd5e1;
         margin-top: 6px;
-        letter-spacing: 0.02em;
+        font-weight: 500;
     }
 
-    /* --- 7. MACOS TRANSLUCENT SIDEBAR --- */
+    /* Sidebar trong suốt chuẩn macOS */
     [data-testid="stSidebar"] {
-        background-color: rgba(18, 18, 20, 0.7) !important;
+        background-color: rgba(18, 19, 23, 0.75) !important;
         backdrop-filter: blur(40px) saturate(180%) !important;
         -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
-        border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
     }
     .sidebar-meta-box {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-top: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 16px;
-        padding: 16px;
-        margin-top: 16px;
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 18px;
+        padding: 18px;
+        margin-top: 14px;
+        box-shadow: 0 10px 25px -10px rgba(0,0,0,0.3);
     }
     .meta-sub-header {
-        color: #6e6e73;
+        color: #94a3b8;
         font-size: 0.68rem;
         font-weight: 600;
         letter-spacing: 0.06em;
         text-transform: uppercase;
-        margin-bottom: 2px;
+        margin: 0 0 3px 0;
     }
     .meta-title {
-        font-size: 0.95rem;
+        font-size: 0.98rem;
         font-weight: 600;
-        color: #f5f5f7;
-        margin-bottom: 2px;
+        color: #f8fafc;
+        margin: 0 0 2px 0;
     }
     .meta-info {
-        font-size: 0.78rem;
-        color: #2997ff;
-        margin-bottom: 12px;
+        font-size: 0.8rem;
+        color: #38bdf8;
+        margin: 0;
     }
 
-    /* Form & Selectbox theo phong cách System Controls */
+    /* Inputs, Uploader & Button */
     div[data-baseweb="select"] > div {
-        background-color: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 12px !important;
-        color: #f5f5f7 !important;
-        font-size: 0.88rem !important;
-        transition: all 0.2s ease;
+        background-color: rgba(255, 255, 255, 0.06) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 14px !important;
+        color: #f8fafc !important;
     }
-    div[data-baseweb="select"] > div:hover {
-        border-color: rgba(255, 255, 255, 0.2) !important;
-    }
-
-    /* File uploader tinh tế */
     [data-testid="stFileUploadDropzone"] {
-        background: rgba(255, 255, 255, 0.02) !important;
-        backdrop-filter: blur(15px) !important;
-        border: 1px dashed rgba(255, 255, 255, 0.14) !important;
-        border-radius: 20px !important;
-        padding: 2.2rem 1.5rem !important;
-        transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        background: rgba(255, 255, 255, 0.025) !important;
+        border: 1px dashed rgba(255, 255, 255, 0.2) !important;
+        border-radius: 22px !important;
+        padding: 2.5rem 1.5rem !important;
     }
     [data-testid="stFileUploadDropzone"]:hover {
-        background: rgba(255, 255, 255, 0.04) !important;
-        border: 1px dashed #2997ff !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px dashed #38bdf8 !important;
     }
 
-    /* Apple-style Action Button */
     .stDownloadButton > button {
-        background: #0071e3 !important;
-        background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.05) 100%) !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
         border-radius: 980px !important;
         color: #ffffff !important;
-        font-size: 0.9rem !important;
-        font-weight: 500 !important;
-        padding: 10px 24px !important;
-        box-shadow: 0 4px 14px rgba(0, 113, 227, 0.35) !important;
-        transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        font-weight: 600 !important;
+        padding: 12px 28px !important;
+        box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4) !important;
+        transition: transform 0.15s ease !important;
     }
     .stDownloadButton > button:hover {
-        background: #0077ed !important;
         transform: scale(1.01) !important;
     }
     .stDownloadButton > button:active {
         transform: scale(0.98) !important;
     }
-
-    /* Gentle scroll cue */
-    .gentle-scroll {
-        position: fixed;
-        bottom: 24px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        background: rgba(24, 24, 27, 0.7);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 6px 14px;
-        border-radius: 980px;
-        color: #86868b;
-        font-size: 0.72rem;
-        letter-spacing: 0.02em;
-        pointer-events: none;
-        z-index: 99;
-        transition: opacity 0.4s ease;
-    }
-</style>
-""", unsafe_allow_html=True)
+</style>""", unsafe_allow_html=True)
 
 # ==========================================
 # 3. SIDEBAR CONTROLS & BRANDING
@@ -485,30 +447,23 @@ if uploaded:
     c1, c2 = st.columns([1, 1.15], gap="large")
     
     with c1:
-        st.markdown('<div class="apple-card">', unsafe_allow_html=True)
         st.image(img, use_container_width=True)
         
-        st.markdown("""
-        <div style='margin-top: 20px; display: flex; justify-content: space-between; align-items: baseline;'>
-            <span style='font-size: 0.76rem; font-weight: 600; color: #86868b; text-transform: uppercase; letter-spacing: 0.06em;'>Bảng màu chủ đạo</span>
-            <span style='font-size: 0.72rem; color: #6e6e73;'>K-Means (k=5)</span>
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown("""<div style='margin-top: 16px; display: flex; justify-content: space-between; align-items: baseline;'>
+<span style='font-size: 0.76rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em;'>Bảng màu chủ đạo</span>
+<span style='font-size: 0.72rem; color: #64748b;'>K-Means (k=5)</span>
+</div>""", unsafe_allow_html=True)
         
         color_html = "<div class='palette-container'>"
         for hex_code in dominant_colors:
-            color_html += f"""
-            <div class='swatch-card'>
-                <div class='swatch-pill' style='background-color: {hex_code};'></div>
-                <span class='swatch-code'>{hex_code}</span>
-            </div>
-            """
+            color_html += f"""<div class='swatch-card'>
+<div class='swatch-pill' style='background-color: {hex_code};'></div>
+<span class='swatch-code'>{hex_code}</span>
+</div>"""
         color_html += "</div>"
         st.markdown(color_html, unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
         
     with c2:
-        st.markdown('<div class="apple-card">', unsafe_allow_html=True)
         with st.spinner("Đang trích xuất vector đặc trưng thẩm mỹ..."):
             input_tensor = transform(img).unsqueeze(0).to(device)
             with torch.no_grad():
@@ -517,30 +472,26 @@ if uploaded:
                 final_score = float(scores[0])
                 attr_scores = scores[1:]
             
-            # Khối hiển thị điểm số phong cách Apple Clean Typography
-            st.markdown(f"""
-            <div class="score-container">
-                <div class="score-number">{final_score:.2f}<span>/10</span></div>
-                <div class="score-caption">Overall Aesthetic Magnitude</div>
-            </div>
-            """, unsafe_allow_html=True)
+            st.markdown(f"""<div class="score-container">
+<div class="score-number">{final_score:.2f}<span>/10</span></div>
+<div class="score-caption">Overall Aesthetic Magnitude</div>
+</div>""", unsafe_allow_html=True)
             
-            st.markdown("<p style='font-size: 0.76rem; font-weight: 600; color: #86868b; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px;'>11 Thuộc tính Nguyên lý Thiết kế</p>", unsafe_allow_html=True)
+            st.markdown("<p style='font-size: 0.76rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px;'>11 Thuộc tính Nguyên lý Thiết kế</p>", unsafe_allow_html=True)
             for a, s in zip(attrs, attr_scores):
-                st.markdown(f'<div class="attr-row"><span>{a}</span><span class="attr-val">{s:.1f}</span></div>', unsafe_allow_html=True)
+                st.markdown(f"""<div class="attr-row">
+<span>{a}</span><span class="attr-val">{s:.1f}</span>
+</div>""", unsafe_allow_html=True)
                 st.progress(float(s/10))
-        st.markdown('</div>', unsafe_allow_html=True)
 
-    # Khối bình duyệt nghệ thuật (Editorial Critique)
-    st.markdown("<div style='height: 24px;'></div>", unsafe_allow_html=True)
-    
-    st.markdown('<div class="apple-card">', unsafe_allow_html=True)
-    st.markdown("""
-    <div style='display: flex; align-items: center; gap: 8px; margin-bottom: 16px;'>
-        <span style='color: #2997ff; font-size: 1.1rem;'>✦</span>
-        <h3 style='margin: 0; font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em;'>Bình duyệt Nghệ thuật Chuyên sâu</h3>
-    </div>
-    """, unsafe_allow_html=True)
+    # Khối bình duyệt nghệ thuật
+    st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
+    critique_panel = st.columns(1)[0]
+    with critique_panel:
+        st.markdown("""<div style='display: flex; align-items: center; gap: 8px; margin-bottom: 16px;'>
+<span style='color: #38bdf8; font-size: 1.1rem;'>✦</span>
+<h3 style='margin: 0; font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em;'>Bình duyệt Nghệ thuật Chuyên sâu</h3>
+</div>""", unsafe_allow_html=True)
     
     if GROQ_API_KEY:
         with st.spinner("Art Director đang quan sát và đúc kết nhận xét..."):
