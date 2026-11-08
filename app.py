@@ -394,6 +394,13 @@ st.markdown("""<style>
         text-align: center !important;
     }
 
+    /* Khóa bề ngang khối Upload trải rộng 100% khớp bằng phẳng với cụm stack 2 cột bên dưới */
+    [data-testid="stFileUploader"],
+    [data-testid="stFileUploader"] > div {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
     [data-testid*="Dropzone"],
     [data-testid="stFileUploaderDropzone"],
     [data-testid="stFileUploadDropzone"],
@@ -402,9 +409,11 @@ st.markdown("""<style>
         background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%) !important;
         background-color: #ffffff !important;
         border: 1.8px dashed #10b981 !important;
-        border-radius: 22px !important;
-        padding: 2.5rem 1.5rem !important;
-        min-height: 130px !important;
+        border-radius: 24px !important;
+        padding: 2.2rem 1.5rem !important;
+        min-height: 125px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
@@ -669,7 +678,9 @@ attrs = [
 # ==========================================
 # 5. INFERENCE & CRITIQUE EXECUTION
 # ==========================================
-uploaded = st.file_uploader("Tải tác phẩm cần thẩm định mỹ thuật", type=["jpg", "png", "jpeg"])
+uploader_container = st.container()
+with uploader_container:
+    uploaded = st.file_uploader("Tải tác phẩm cần thẩm định mỹ thuật", type=["jpg", "png", "jpeg"])
 
 if uploaded:
     img = Image.open(uploaded).convert('RGB')
