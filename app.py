@@ -381,38 +381,73 @@ st.markdown("""<style>
         font-weight: 700 !important;
     }
 
-    /* 9. SỬA TRIỆT ĐỂ: TOÀN BỘ KHU VỰC VÀ BOX SAU UPLOAD ẢNH ĐỀU TRẮNG SÁNG & MINT */
-    [data-testid="stFileUploadDropzone"] {
+    /* 9. SỬA TRIỆT ĐỂ: TOÀN BỘ KHU VỰC VÀ BOX DROPZONE FILE UPLOADER SÁNG TRẮNG SỨ & MINT */
+    [data-testid="stWidgetLabel"],
+    [data-testid="stWidgetLabel"] *,
+    [data-testid="stFileUploader"] label {
+        color: #0f172a !important;
+        font-weight: 750 !important;
+        font-size: 0.95rem !important;
+        margin-bottom: 8px !important;
+    }
+
+    /* Bắt trọn vẹn cả hai định danh stFileUploaderDropzone và stFileUploadDropzone */
+    [data-testid*="Dropzone"],
+    [data-testid="stFileUploaderDropzone"],
+    [data-testid="stFileUploadDropzone"],
+    [data-testid="stFileUploader"] section,
+    div[data-testid="stFileUploader"] > section {
         background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%) !important;
+        background-color: #ffffff !important;
         border: 1.8px dashed #10b981 !important;
-        border-radius: 24px !important;
-        padding: 2.4rem 1.5rem !important;
-        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.08) !important;
+        border-radius: 22px !important;
+        padding: 2.2rem 1.5rem !important;
+        box-shadow: 0 10px 28px rgba(16, 185, 129, 0.08) !important;
         transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1) !important;
     }
-    [data-testid="stFileUploadDropzone"]:hover {
+    [data-testid*="Dropzone"]:hover,
+    [data-testid="stFileUploaderDropzone"]:hover,
+    [data-testid="stFileUploader"] section:hover {
         background: #ecfdf5 !important;
         border-color: #059669 !important;
-        box-shadow: 0 12px 30px rgba(16, 185, 129, 0.18) !important;
+        box-shadow: 0 14px 34px rgba(16, 185, 129, 0.16) !important;
         transform: translateY(-2px);
     }
-    [data-testid="stFileUploadDropzone"] button {
-        background: #10b981 !important;
+
+    /* Nút bấm Browse files / Upload */
+    [data-testid*="Dropzone"] button,
+    [data-testid*="FileUploader"] button,
+    section[data-testid*="Dropzone"] button {
+        background: linear-gradient(180deg, #10b981 0%, #059669 100%) !important;
         border: none !important;
         border-radius: 980px !important;
         color: #ffffff !important;
-        font-weight: 700 !important;
-        padding: 6px 18px !important;
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+        font-weight: 750 !important;
+        padding: 8px 24px !important;
+        box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35) !important;
+        transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
     }
-    [data-testid="stFileUploadDropzone"] button:hover {
-        background: #059669 !important;
+    [data-testid*="Dropzone"] button:hover,
+    [data-testid*="FileUploader"] button:hover {
+        background: linear-gradient(180deg, #34d399 0%, #047857 100%) !important;
+        transform: scale(1.02);
     }
-    [data-testid="stFileUploadDropzone"] * {
-        color: #0f172a !important;
+    [data-testid*="Dropzone"] button *,
+    [data-testid*="FileUploader"] button * {
+        color: #ffffff !important;
+        fill: #ffffff !important;
     }
 
-    /* Card hiển thị tệp sau khi upload thành công */
+    /* Văn bản hướng dẫn định dạng file (200MB per file...) */
+    [data-testid*="Dropzone"] span,
+    [data-testid*="Dropzone"] small,
+    [data-testid*="FileUploader"] small,
+    [data-testid*="FileUploader"] span {
+        color: #475569 !important;
+        font-weight: 600 !important;
+    }
+
+    /* Card hiển thị tệp sau khi đã upload */
     [data-testid="stFileUploaderFileData"],
     [data-testid="stFileUploaderFileData"] > div,
     div[data-testid="stFileUploaderFileData"] {
