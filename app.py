@@ -226,8 +226,8 @@ with st.sidebar:
     st.markdown("""
     <div class="sidebar-brand">
         <p style="color: #64748b; font-size: 0.7rem; margin-bottom: 5px;">INSTRUCTOR / ADVISOR</p>
-        <p style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0;">ThS. Vũ Minh Anh</p>
-        <p style="color: #e2e8f0; font-size: 0.8rem; margin-bottom: 12px;">anhvm@vnu.edu.vn</p>
+        <p style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0;">ThS. Lê Đức Duy</p>
+        <p style="color: #e2e8f0; font-size: 0.8rem; margin-bottom: 12px;">duyld@vnu.edu.vn</p>
         <hr style="border-color: rgba(255,255,255,0.05); margin: 12px 0;">
         <p style="color: #64748b; font-size: 0.7rem; margin-bottom: 5px;">LEAD ENGINEER</p>
         <p style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0;">Bùi Đặng Mỹ</p>
@@ -442,7 +442,7 @@ if uploaded:
                                 ],
                             }
                         ],
-                        model="meta-llama/llama-4-scout-17b-16e-instruct", # Có thể thay bằng "llama-guard-3-8b" hoặc model vision hiện tại trên Groq
+                        model="qwen/qwen3.8-27b", # Có thể thay bằng "llama-guard-3-8b" hoặc model vision hiện tại trên Groq
                         temperature=0.6, 
                     )
                     
