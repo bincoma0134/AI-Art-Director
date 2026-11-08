@@ -19,3 +19,6 @@ Log.txt
 # Chỉ tải lên các file _best.pth, bỏ qua tất cả các file epoch cũ (rất nặng)
 *.pth
 !*best.pth
+
+
+secrets.tolm
