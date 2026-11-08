@@ -378,25 +378,19 @@ with st.sidebar:
         label_visibility="collapsed"
     )
     
-    st.markdown("""
-    <div class="sidebar-meta-box">
-        <p class="meta-sub-header">Advisor / Supervisor</p>
-        <p class="meta-title">ThS. Lê Đức Duy</p>
-        <p class="meta-info">duyld@vnu.edu.vn</p>
-        
-        <div style="height: 1px; background: rgba(255,255,255,0.06); margin: 10px 0;"></div>
-        
-        <p class="meta-sub-header">Lead Engineer</p>
-        <p class="meta-title">Bùi Đặng Mỹ</p>
-        <p class="meta-info">ID: 24023036 • UET - VNU</p>
-        
-        <div style="height: 1px; background: rgba(255,255,255,0.06); margin: 10px 0;"></div>
-        
-        <p class="meta-sub-header">Contact</p>
-        <p style="font-size: 0.8rem; color: #a1a1a6; margin: 0 0 2px 0;">24023036@vnu.edu.vn</p>
-        <p style="font-size: 0.8rem; color: #6e6e73; margin: 0;">+84 868 296018</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("""<div class="sidebar-meta-box">
+<p class="meta-sub-header">Advisor / Supervisor</p>
+<p class="meta-title">ThS. Lê Đức Duy</p>
+<p class="meta-info">duyld@vnu.edu.vn</p>
+<div style="height: 1px; background: rgba(255,255,255,0.06); margin: 10px 0;"></div>
+<p class="meta-sub-header">Lead Engineer</p>
+<p class="meta-title">Bùi Đặng Mỹ</p>
+<p class="meta-info">ID: 24023036 • UET - VNU</p>
+<div style="height: 1px; background: rgba(255,255,255,0.06); margin: 10px 0;"></div>
+<p class="meta-sub-header">Contact</p>
+<p style="font-size: 0.8rem; color: #a1a1a6; margin: 0 0 2px 0;">24023036@vnu.edu.vn</p>
+<p style="font-size: 0.8rem; color: #6e6e73; margin: 0;">+84 868 296018</p>
+</div>""", unsafe_allow_html=True)
 
 # ==========================================
 # 4. MAIN INTERFACE & MODEL ENGINE
